@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <title>
+        1.1 Vectors, You Complete Me
+    </title>
+    <style>
+        body {
+            margin: 0px;
+
+        }
+
+        #CANVAS {
+            background-color: #96ceb4;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id='CANVAS'>
+    </canvas>
+    <script>
+        const canvas = document.getElementById('CANVAS')
+        const WIDTH = window.innerWidth
+        const HEIGHT = window.innerHeight
+        canvas.width = WIDTH
+        canvas.height = HEIGHT
+        const ctx = canvas.getContext('2d')
+
+        let mouse = {
+            x: 0,
+            y: 0
+        }
+        addEventListener('mousemove',function(e){
+            mouse.x = e.clientX
+            mouse.y = e.clientY
+            // console.log(mouse.x, mouse.y)
+        })
+
+ 
+
+        class Pvector {
+            constructor(x, y){
+                this.x = x
+                this.y = y
+                
+            }
+            // add(){
+            //     this.x += this.vx
+            //     this.y += this.vy
+            // }
+            sub(vx, vy){
+                this.vx = vx
+                this.vy = vy
+                this.x -= this.vx
+                this.y -= this.vy
+            }
+            multi(n){
+                // this.n = n
+                this.x *= n
+                this.y *= n
+            }
+            div(n){
+                this.x /= n
+                this.y /= n
+            }
+            dinstance(){
+                return Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2))
+               
+            }
+        }
+
+
+
+        const center = new Pvector(WIDTH / 2, HEIGHT / 2)
+        ctx.translate(center.x, center.y)
+
+        
+        function render() {
+            ctx.clearRect(-WIDTH/2, -HEIGHT/2, WIDTH, HEIGHT)
+            const mouseV = new Pvector(mouse.x, mouse.y) 
+            
+            let m = mouseV.dinstance()
+            ctx.fillRect(0, 0, m, 10) 
+
+            mouseV.sub(center.x, center.y)
+            mouseV.multi(0.5)
+            
+
+            ctx.beginPath()
+            ctx.moveTo(0, 0)
+            ctx.lineTo(mouseV.x, mouseV.y)
+            ctx.strokeStyle = ' #ff6f69'
+
+            //선두께 조절
+            ctx.lineWidth = 10
+
+            //선의 끝점 모양 변경 butt, round, square
+            ctx.lineCap = 'round'
+            ctx.stroke()
+            // 
+            // console.log(mouseV.dinstance())
+
+
+            requestAnimationFrame(render)
+        }
+        requestAnimationFrame(render)
+    </script>
+</body>
+
+</html>
+
+<!-- #ffeead, #ffcc5c, 	#88d8b0 -->

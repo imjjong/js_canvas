@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+        <style>
+            body,
+            ul {
+            margin: 0;
+            padding: 0;
+            }
+
+            li {
+            list-style-type: none;
+            }
+
+            a {
+            text-decoration: none;
+            color: inherit;
+            }
+            
+            body{
+            background-color: #222;
+            }
+            .clearfix::after {
+                content: ' ';
+                display: block;
+                clear: both;
+            }
+
+            .wrapper{
+            background-color: #111;
+            color: white;
+            width: 800px;
+            margin: 100px auto;
+            }
+
+            .sq{
+                background: white;
+                background-color: #111;
+                /* overflow: hidden; */
+                padding: 1rem;
+            }
+
+            .sq-item{
+                float: left;
+                width: 25%;
+                padding-top:25%;
+                position: relative;
+            }
+
+            .sq-item-large{
+                width: 50%;
+                padding-top: 50%;
+            }
+            .sq-item-long{
+                padding-top: 75%;
+            }
+            
+            .sq-item-long-right{
+                float: right;
+            }
+            .sq-item-wide{
+                width: 50%;
+            }
+            .sq-item-anchor{
+                background-color: orange;
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom : 0;
+                margin : 1rem;
+                padding : 2rem;
+                font-size : 2rem;
+                /* transition: transform 1s; */
+                transition: all 0.3s;
+                overflow:hidden;
+                border: 0px solid white;
+                opacity: 0.5;
+                font-family: 'Roboto', sans-serif;
+                border-radius: 10px
+            }
+
+            .sq-item-anchor::after{
+                content:' ';
+                position: absolute;
+                left:0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                background: -moz-linear-gradient(top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
+                background: -webkit-linear-gradient(top, rgba(0,0,0,0.8) 0%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
+                background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+                z-index:10;
+                font-size: 2rem;
+            }
+
+            .sq-item-anchor-cover{
+                position: absolute;
+                left: 0;
+                top: 0;
+                z-index: 10;
+            }
+            .sq-item-anchor-title{
+                position: relative;
+                /* 글자가 보일려면 Position이 고정으로 설정되어 있으면 안됨.*/
+                z-index: 20;
+            }
+
+            .sq-item-anchor:hover{
+                /* transform:scale(1.3); */
+                margin: -1.5rem;
+                z-index:30;
+                border: 10px solid white;
+                opacity: 1;
+                font-size:3rem;
+
+                box-shadow: 0 0 30px 50px rgba(0, 0, 0, 0.5)
+            }
+
+        </style>    
+    <head>
+    <body>
+        <div class="wrapper">
+            <ul class="sq clear-fix">
+                <li class="sq-item sq-item-large">
+                    <a class="sq-item-anchor" href="">
+                        <img class="sq-item-anchor-cover"
+                        src="images/crepe.png">
+                        <span class="sq-item-anchor-title">Crepe1</span>
+                    </a>
+                </li>
+        
+                <li class="sq-item">
+                    <a class="sq-item-anchor" href="">
+                        <img class="sq-item-anchor-cover" src="images/cake.png">
+                        <span class="sq-item-anchor-title">Crepe2</span>
+                    </a>
+                </li>
+        
+                <li class="sq-item">
+                    <a class="sq-item-anchor" href="">
+                        <img class="sq-item-anchor-cover" src="images/cream.png">
+                        <span class="sq-item-anchor-title">Crepe3</span>
+                    </a>
+                </li>
+        
+                <li class="sq-item">
+                    <a class="sq-item-anchor" href="">
+                        <img class="sq-item-anchor-cover" src="images/cookie.png">
+                        <span class="sq-item-anchor-title">Crepe4</span>
+                    </a>
+                </li>
+        
+                <li class="sq-item sq-item-long sq-item-long-right">
+                    <a class="sq-item-anchor" href="">
+                        <img class="sq-item-anchor-cover" src="images/cake.png">
+                        <span class="sq-item-anchor-title">Crepe5</span>
+                    </a>
+                </li>
+        
+                <li class="sq-item">
+                    <a class="sq-item-anchor" href="">
+                        <img class="sq-item-anchor-cover" src="images/cheeze.png">
+                        <span class="sq-item-anchor-title">Crepe6</span>
+                    </a>
+                </li>
+        
+                <li class="sq-item">
+                    <a class="sq-item-anchor" href="">
+                        <img class="sq-item-anchor-cover" src="images/choco.png">
+                        <span class="sq-item-anchor-title">Crepe7</span>
+                    </a>
+                </li>
+        
+                <li class="sq-item">
+                    <a class="sq-item-anchor" href="">
+                        <img class="sq-item-anchor-cover" src="images/chili.png">
+                        <span class="sq-item-anchor-title">Crepe8</span>
+                    </a>
+                </li>
+        
+                <li class="sq-item sq-item-wide">
+                    <a class="sq-item-anchor" href="">
+                        <img class="sq-item-anchor-cover" src="images/cinnamon.png">
+                        <span class="sq-item-anchor-title">Crepe9</span>
+                    </a>
+                </li>
+        
+                <li class="sq-item">
+                    <a class="sq-item-anchor" href="">
+                        <img class="sq-item-anchor-cover" src="images/candy.png">
+                        <span class="sq-item-anchor-title">Crepe10</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </body>
+</html>

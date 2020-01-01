@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        Collision + Distance
+    </title>
+    <style>
+        body {
+            margin: 0;
+        }
+        h1{
+            /* 절대 좌표로 변경 */
+            position: absolute;
+            /* font-size: 5em; */
+            /* transform : translate(-50%, -50%) */
+        }
+        h2{
+            position : absolute;
+        }
+        canvas {
+            background-color: #393E46;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.3/dat.gui.min.js"></script>
+</head>
+
+<body>
+    <h1 id="mainText">Collsion</h1>
+    <h2 id="distanceText">Distance</h2>
+    <canvas id='backCanvas'>
+    </canvas>
+    <script src="collision.js">
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset='utf-8'/>
+        <title>
+            Bouncing ball with no vectors
+        </title>
+        <style type='text/css'>
+            body{
+                margin:0px
+            }
+            #tutorial{
+                background: gray;
+            }
+        </style>
+    </head>
+    <!-- <body onload="setup()"> -->
+    <body>
+        <canvas id="tutorial">
+        </canvas>
+        <script>
+            const canvas = document.getElementById('tutorial')
+            console.log(canvas)
+            canvas.width = window.innerWidth;
+            canvas.height = 200
+
+            const WIDTH = window.innerWidth
+
+            // 지원여부 검사
+            // if(canvas.getContext){
+                const ctx = canvas.getContext('2d')
+            // }
+
+
+
+            function draw(){
+                if(1){
+
+                    ctx.fillStyle = "rgb(200,0,0)";
+                    ctx.fillRect(WIDTH/10, 25, 100, 100);
+                    
+                    ctx.fillStyle = "rgb(0,200,0.5)";
+                    ctx.fillRect(WIDTH/10*4, 25, 100, 100);
+                }
+            }
+
+            function render() {
+
+                draw()
+                requestAnimationFrame(render)
+            }
+            requestAnimationFrame(render)
+        </script>
+    </body>
+</html>

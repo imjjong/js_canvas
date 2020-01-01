@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lnag='kr'>
+    <head>
+        <meta charset='utf-8'>
+        <title>
+            Gradient Background Animation
+        </title>
+        <style type='text/css'>
+            body{
+                background: linear-gradient(132deg, #ec5128, #1665c1);
+                background-size: 400% 1000%;
+                animation: BackgroundGradient 30s ease infinite;
+            }
+
+            @keyframes BackgroundGradient{
+                0% {background-position: 0% 100%}
+                50% {background-position: 100% 100%}
+                100% {background-position: 0% 100%}
+            }
+            h1{
+                position: absolute;
+                left: 50%;
+                top: 50%;
+
+                /* 텍스트 중앙 정렬 방법 */
+                transform: translateX(-50%) translateY(-50%);
+                font-family: OpenSans, sans-serif;
+                color: #FFF;
+                /* 글자 두께 조정 */
+                font-weight: 400;
+
+                /* 대문자 만들기 */
+                text-transform: uppercase;
+                text-align: center;
+                font-size: 2em;
+                background-color: #000;
+                padding: 5px;
+
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Gradient Background Animation</h1>
+        <script type="text/javascript">
+        
+        </script>
+    </body>
+</html>

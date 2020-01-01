@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head></head>
+
+<body>
+    <script>
+        document.body.style.margin = '0px'
+        document.body.style.padding = '0px'
+        const WIDTH = window.innerWidth
+        const HEIGHT = window.innerHeight
+        const canvas = document.createElement('canvas')
+        canvas.width = WIDTH
+        canvas.height = HEIGHT
+        document.body.appendChild(canvas)
+        const context = canvas.getContext('2d')
+
+        class Ball {
+            constructor(x, y) {
+                this.x = x
+                this.y = y
+                this.r = 10
+                this.vx = 1
+                this.vy = 0.5
+
+                const WIDTH = window.innerWidth
+                const HEIGHT = window.innerHeight
+                const canvas = document.createElement('canvas')
+                canvas.width = WIDTH
+                canvas.height = HEIGHT
+                this.context = canvas.getContext('2d')
+                this.canvas = canvas
+            }
+
+            update() {
+                this.x += this.vx
+                this.y += this.vy
+            }
+
+            draw(mainContext) {
+                this.context.fillStyle = 'rgba(0, 0, 0, 0.1)'
+                this.context.fillRect(0, 0, this.canvas.width, this.canvas.height)
+
+                this.context.beginPath()
+                this.context.arc(this.x, this.y, this.r, 0, 2 * Math.PI)
+                this.context.closePath()
+                this.context.fillStyle = 'rgb(200, 100, 50)'
+                this.context.fill()
+
+                mainContext.drawImage(this.canvas, 0, 0)
+            }
+
+        }
+
+        class Block {
+            constructor(x, y) {
+                this.x = x
+                this.y = y
+                this.w = 4 * Math.random()
+                this.h = 4 * Math.random()
+                this.c = '#' + Math.floor(Math.random() * 16777215).toString(16)
+                this.vx = (Math.random() - 0.5)
+                this.vy = (Math.random() - 0.5)
+            }
+
+            update() {
+                this.x += this.vx
+                this.y += this.vy
+            }
+
+            draw(mainContext) {
+                mainContext.fillStyle = this.c
+                mainContext.fillRect(this.x, this.y, this.w, this.h)
+            }
+        }
+
+        const ball = new Ball(0, 0)
+
+        const BLOCK_COUNT = 1000
+        const blocks = []
+        for (let i = 0; i < BLOCK_COUNT; i++) {
+            const x = WIDTH * Math.random()
+            const y = HEIGHT * Math.random()
+            const block = new Block(x, y)
+            blocks.push(block)
+        }
+
+        function render() {
+            context.fillStyle = '#000'
+            context.fillRect(0, 0, WIDTH, HEIGHT)
+
+            ball.update()
+            ball.draw(context)
+
+            for (let i = 0; i < blocks.length; i++) {
+                const block = blocks[i]
+                block.update()
+                block.draw(context)
+            }
+
+            requestAnimationFrame(render)
+        }
+
+        requestAnimationFrame(render)            
+    </script>
+</body>
+
+</html>
+
+
+
+
