@@ -25,7 +25,7 @@ function textInit() {
     mainText.style.transform = "translate(-50%, -100%)"
     // mainText.style.transform = "translateY(-50%)"
     // mainText.style.transform = "translateY(-50%)"
-    mainText.style.fontSize = ball1.radius / 20 + "em"
+    mainText.style.fontSize = ball1.radius / 30 + "rem"
     // mainText.style.fontSize = "10em"
 
 }
