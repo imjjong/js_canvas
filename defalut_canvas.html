@@ -14,7 +14,6 @@
             #canvas{
                 background-color: #0D0D0D;
                 z-index: 0;
-
             }
             h1{
                 position : absolute;
@@ -37,20 +36,12 @@
                 font-weight: 100;
                 /* display : inline-block; */
                 top: 50%;
-                /* vertical-align: top; */
+                
                 /* padding:0em; */
                 width: 10rem;
                 /* transform: translate(-50%, -50%); */
                 /* border-radius: 4rem; */
                 
-            }
-            #canvasTitle3{
-                font-family: 'Noto Sans KR', sans-serif;
-                font-weight: 900;
-                top : 100%;
-                font-size: 1.5rem;
-                margin-left: auto;
-                margin-right: auto;
             }
             .aliginDvi{
                 background-color:#401612;
@@ -70,16 +61,14 @@
                 font-family: 'Noto Sans KR', sans-serif;
                 font-weight: 100;
                 color: #F2F2F0;
-                font-size: 1.5rem;
-
-                vertical-align: middle;
+                font-size: 1rem;
+                
+                display: table;
             }
             .text{
-                /* top: 50%; */
-                /* transform: translateY(50%); */
+                display:table-cell;
+                vertical-align:middle;
                 text-align: center;
-
-                vertical-align: middle;
             }
             .aliginDvi2{
                 position: absolute;
@@ -87,15 +76,12 @@
                 height: 50%;
                 z-index: 0;
                 background-color: #B4D9B6;
-
-                
             }
         </style>
     </head>
     <body>
         <h1 id="canvasTitle1">Hello, canvas 스크립트</h1>
-        <h1 id="canvasTitle3">Hello, canvas 스크립트</h1>
-        <div class="aliginDvi"><div class="text">Hello, canvas 스크립트</div></div>
+        <div class="aliginDvi"><div class="text">Hello, canvas<br>스크립트<br>세로 가운데<br>배치하기</div></div>
         <div class="aliginDvi2"></div>
         <canvas id="canvas">
         </canvas>
