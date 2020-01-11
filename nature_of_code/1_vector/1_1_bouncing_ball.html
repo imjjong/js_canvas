@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap&subset=korean"
         rel="stylesheet">
     <style>
+
         body {
             margin: 0px;
             padding: 0px;
@@ -77,9 +78,8 @@
             vertical-align: middle;
             text-align: center;
         }
-
-        
     </style>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.3/dat.gui.min.js"></script>
 </head>
 
 <body>
@@ -90,6 +90,7 @@
     <canvas id="canvas">
     </canvas>
     <script>
+
         var colorObject = ['#0D0D0', '#D95043', '#401612', '#D95D41', '#F2F2F0']
         canvas = document.getElementById("canvas")
         canvas.width = window.innerWidth
@@ -98,28 +99,51 @@
 
         const ctx = canvas.getContext('2d');
         
+
         var xspeed = 1;
         var x = 100;
         var yspeed = 1;
         var y = 100;
+        
+        var 
+        ballData = {
+            ballRadius : 5,
+            color : `#D95043`
+        }
+       
 
 
         function draw(){
             ctx.beginPath()
-            ctx.arc(x, y, 50, 0, Math.PI * 2);
-            ctx.fillStyle = `#D95043`
+            ctx.arc(x, y, ballData.ballRadius, 0, Math.PI * 2);
+            ctx.fillStyle = ballData.color
             ctx.fill()
             ctx.closePath()
         }
 
         function render(){
+            ballRadius = ballData.ballRadius
             ctx.clearRect(0, 0, window.innerWidth, window.innerHeight)
+            
             x = x + xspeed;
             y = y + yspeed;
+
+            if((x + ballRadius> window.innerWidth) || x - ballRadius< 0){
+                xspeed = xspeed * -1;
+            }
+            if((y + ballRadius > window.innerHeight) || y - ballRadius< 0){
+                yspeed = yspeed * -1
+            }
+            
             draw();
             requestAnimationFrame(render);
         }
         requestAnimationFrame(render);
+
+        const gui = new dat.GUI();
+        // const physicalValue = gui.addFolder('physicalValue');
+        gui.add(ballData, 'ballRadius', 0, 100).step(1);
+        gui.addColor(ballData, 'color');
     </script>
 </body>
 
