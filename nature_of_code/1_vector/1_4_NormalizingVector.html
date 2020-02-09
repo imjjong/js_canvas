@@ -4,12 +4,11 @@
 <head>
     <meta charset="utf-8">
     <title>
-        Mouse move
+        1_4_Normalizing Vector
     </title>
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap&subset=korean"
         rel="stylesheet">
     <style>
-
         body {
             margin: 0px;
             padding: 0px;
@@ -17,7 +16,7 @@
 
         #canvas {
             background-color: #0D0D0D;
-            z-index: 0;
+            z-index: 1;
         }
 
         h1 {
@@ -60,10 +59,9 @@
             height: 10rem;
 
             position: absolute;
-            top: 50%;
+            bottom: 0%;
             left: 50%;
             transform: translate(-50%, -50%);
-
 
             font-family: 'Noto Sans KR', sans-serif;
             font-weight: 100;
@@ -84,7 +82,7 @@
 </head>
 
 <body>
-    <h1 id="canvasTitle1">3 Accelerating Toward</h1>
+    <h1 id="canvasTitle1">3 Vector subtraction</h1>
     <div class="aliginDvi">
         <div class="text" id="screen-log">
             MouseData
@@ -100,46 +98,107 @@
         var x = 100;
         var yspeed = 1;
         var y = 100;
+        var langthRate = 0.5;
+
+        const mouse = {
+            x: 0,
+            y: 0
+        }
 
         function logKey(e) {
-                screenLog.innerText = `
+            screenLog.innerText = `
                 Screen X/Y: ${e.screenX}, ${e.screenY}
-                Client X/Y: ${e.clientX}, ${e.clientY}`;
+                Client X/Y: ${e.clientX}, ${e.clientY}
+                ${mouse.x}, ${mouse.y}`;
 
-                x = e.clientX;
-                y = e.clientY;
-            }
-    
-        var colorObject = ['#0D0D0', '#D95043', '#401612', '#D95D41', '#F2F2F0']
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        }
+
+        var colorObject = ['#0D0D0', '#D95043', '#401612', '#D95D41', '#F2F2F0', '#FF6787']
         canvas = document.getElementById("canvas")
-        canvas.width = window.innerWidth
-        canvas.height = window.innerHeight
-        console.log(canvas)
+        WIDTH = window.innerWidth
+        HEIGHT = window.innerHeight
+        canvas.width = WIDTH
+        canvas.height = HEIGHT
 
         const ctx = canvas.getContext('2d');
-        
+        ctx.translate(WIDTH / 2, HEIGHT / 2)
 
+        class Pvector {
+            constructor(x, y) {
+                this.x = x
+                this.y = y
+            }
 
-        
-        var 
-        ballData = {
-            ballRadius : 50,
-            color : `#D95043`
+            add() {
+                this.x += this.vx
+                this.y += this.vy
+            }
+
+            sub(vx, vy) {
+                this.vx = vx
+                this.vy = vy
+                this.x -= this.vx
+                this.y -= this.vy
+            }
+            multi(n) {
+                // this.n = n
+                this.x *= n
+                this.y *= n
+            }
+            div(n) {
+                this.x /= n
+                this.y /= n
+            }
+            distance() {
+                return Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2))
+
+            }
+            normalize() {
+                let m = this.distance()
+                if (m != 0) {
+                    this.div(m)
+                }
+            }
         }
-       
 
 
-        function draw(){
+
+
+        var ballData = {
+            distance: 100,
+            color: `#D95043`
+        }
+
+
+        function draw() {
+            const pvector = new Pvector(mouse.x, mouse.y)
+            pvector.sub(WIDTH / 2, HEIGHT / 2)
+            
+            let distance = pvector.distance()
+
+            ctx.fillStyle = '#B2DBBF'
+            ctx.fillRect(- WIDTH / 2, -HEIGHT / 2, 100, distance)
+
+                        pvector.normalize()
+                        pvector.multi(ballData.distance)
+
             ctx.beginPath()
-            ctx.arc(x, y, ballData.ballRadius, 0, Math.PI * 2);
-            ctx.fillStyle = ballData.color
-            ctx.fill()
+            ctx.moveTo(0, 0)
+            ctx.lineTo(pvector.x, pvector.y)
+            ctx.strokeStyle = '#FF6787'
+            ctx.lineWidth = 10
+            ctx.lineCap = 'round'
+            ctx.stroke()
             ctx.closePath()
+
+            // ctx.moveTo(0, 0)
+            
         }
 
-        function render(){
-            ballRadius = ballData.ballRadius
-            ctx.clearRect(0, 0, window.innerWidth, window.innerHeight)
+        function render() {
+            ctx.clearRect(-window.innerWidth / 2, -window.innerHeight / 2, window.innerWidth, window.innerHeight)
 
             draw();
             requestAnimationFrame(render);
@@ -148,7 +207,7 @@
 
         const gui = new dat.GUI();
         // const physicalValue = gui.addFolder('physicalValue');
-        gui.add(ballData, 'ballRadius', 0, 100).step(1);
+        gui.add(ballData, 'distance', 0, 2).step(0.1);
         gui.addColor(ballData, 'color');
     </script>
 </body>
